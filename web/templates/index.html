@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+      <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+   <title>...::: gscrapper :::...</title>
+  </head>
+  <body>
+    <div class="container">
+        <br>
+        <div class="card card-body mb-0">
+            <h5 class="card-title">gscrapper</h5>
+            <p class="card-text">gscrapper es una eina desenvolupada per Laura Mora per trobar trobar les millors
+                paraules clau a partir de diferents termes de cerca.<br></p>
+        </div>
+
+        <br>
+        <div class="card card-body mb-0">
+            <form id="contact-form" method="post" action="" role="form" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                    <label for="form_name">Paraula clau *</label>
+                    <input id="form_name" type="text" name="key1" class="form-control"
+                           placeholder="Paraula clau *" required="required"
+                           data-error="Paraula clau necessaria.">
+                    <div class="help-block with-errors"></div>
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="form-group">
+                    <label for="form_name">Referencies *</label>
+                    <input id="form_name" type="text" name="key2" class="form-control"
+                           placeholder="Referencies separades per coma *" required="required"
+                           data-error="Referencies necessaries.">
+                    <div class="help-block with-errors"></div>
+                    <small><em>dónde, son, qué, quien, cual, cómo, cuando, por qué, cerca, para, sin, cómo, con, a, y, versus, vs, o, igual (max 50 items)</em></small>
+                    <br>
+                    <em>Get common search terms <a href="https://answerthepublic.com/" target="_blank">answerthepublic</a></em>
+
+                </div>
+              </div>
+
+            </div>
+
+            <div class="row">
+                <!-- [[submit]] -->
+                <div class="col-md-12 d-flex justify-content-center">
+                    <input type="submit" class="btn btn-dark btn-send" value="Cerca">
+                </div>
+            </div>
+            </form>
+        </div>
+
+        <br>
+        <div class="card card-body mb-0">
+
+        {% if nav.menu == "dashboard" %}
+            <div class="row">
+                <div class="col">
+                    instructions and info here!
+                </div>
+            </div>
+
+
+
+        {% elif nav.menu == "result" %}
+            <div class="row">
+                <div class="col">
+                    result here!
+                    <br>
+                    <strong>key1:</strong> {{ data.key1 }}
+                    <br>
+                    <strong>key2:</strong> {{ data.key2 }}
+                    <br><br>
+                    <table>
+                        <tr>
+                            <td>Search term</td>
+                            <td>Results</td>
+                        </tr>
+                        {% for d in data.results %}
+                        <tr>
+                            <td><a href="/search/?term={{ d.search_term }}">{{ d.search_term }}</a></td>
+                            <td>{{ d.result }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+
+        {% endif %}
+        </div>
+
+
+    </div><!-- /.container -->
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
