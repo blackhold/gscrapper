@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-import requests
+import requests, json
 from bs4 import BeautifulSoup
 
 def index(request):
@@ -29,12 +29,10 @@ def index(request):
 
     return render(request, 'index.html', {'nav': nav, 'data': _data})
 
+
 def search(request):
     nav = {'menu': 'result'}
     _search_term = request.GET.getlist('term')
-
-
-    import requests, json
 
     URL = "http://suggestqueries.google.com/complete/search?client=firefox&q=" + str(_search_term)
     headers = {'User-agent': 'Mozilla/5.0'}
@@ -78,6 +76,9 @@ def search_results(search_term):
                     _search_results = {'search_term': search_term, 'result': _result}
                 except Exception:
                     pass
+        elif resp.status_code == 429:
+            _search_results = {'search_term': search_term, 'result': "too many requests, try again later"}
+
     except Exception:
         pass
 
