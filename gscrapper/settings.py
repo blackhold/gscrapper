@@ -25,7 +25,7 @@ SECRET_KEY = 'z7vdyy_m7&wx)s^%r1-d^8rm4exaa(f)q%i#du$vdr4jpusdbc'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', 'gscrapper.capa8.net']
 
 
 # Application definition
