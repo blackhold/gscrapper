@@ -36,6 +36,25 @@ Access to gscrapper
 
 [http://localhost:5001](http://localhost:5001)
 
+## Test in Docker
+
+Alternatively, you can test it inside a Docker container without having to install additional dependencies in your local computer.
+
+Build the image
+
+```
+docker build -t gscrapper .
+```
+Run the container
+
+```
+docker run -dit --name gscrapper-container -p 5001:5001 gscrapper
+```
+
+Access to gscrapper as usual, by typing the following URL in the browser
+
+[http://localhost:5001](http://localhost:5001)
+
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
